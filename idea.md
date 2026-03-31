@@ -11,3 +11,5 @@ AccessPath AI, topluluk odaklı veri paylaşımını yapay zeka ile birleştirir
 - **Dinamik Rota Optimizasyonu:** Raporlanan engellere göre algoritmayı tetikler ve rotayı günceller.
 - **Sesli Asistan (Text-to-Speech):** Erişilebilirliği artırmak için analiz sonuçlarını sesli rehbere dönüştürür.
 - **3D Analiz (Lidar/Kamera):** (Simüle edilmiş) Kullanıcının tekerlekli sandalye boyutlarını sokak genişliğiyle kıyaslar.
+
+prd.md dosyasından detaylı anlatıma erişebilirsiniz <3
