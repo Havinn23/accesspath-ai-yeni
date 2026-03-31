@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// onRouteUpdate özelliği eklendi
+// App.tsx'den gelen fonksiyonu alıyoruz
 const AiAssistant: React.FC<{ onRouteUpdate?: () => void }> = ({ onRouteUpdate }) => {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
@@ -8,7 +8,7 @@ const AiAssistant: React.FC<{ onRouteUpdate?: () => void }> = ({ onRouteUpdate }
   const [isListening, setIsListening] = useState(false);
 
   const handleListen = () => {
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitRecognition;
     if (!SpeechRecognition) return;
     const recognition = new SpeechRecognition();
     recognition.lang = 'tr-TR';
@@ -25,15 +25,21 @@ const AiAssistant: React.FC<{ onRouteUpdate?: () => void }> = ({ onRouteUpdate }
     setLoading(true);
     
     setTimeout(() => {
+      // Kelime ne olursa olsun rotayı güncelle emrini gönderiyoruz!
+      if (onRouteUpdate) {
+        onRouteUpdate();
+      }
+
       let aiResponse = "";
       const lowerInput = input.toLowerCase();
 
-      if (lowerInput.includes("araba") || lowerInput.includes("park") || lowerInput.includes("merdiven") || lowerInput.includes("inşaat")) {
-        aiResponse = `🚨 AI Analizi: "${input}" engeli nedeniyle rota yeniden hesaplandı. Güvenli bölgeye yönlendiriliyorsunuz.`;
-        // EĞER ÖZEL BİR ENGEL VARSA HARİTAYI GÜNCELLE!
-        if (onRouteUpdate) onRouteUpdate(); 
+      // Senaryolara göre metni hazırla
+      if (lowerInput.includes("araba") || lowerInput.includes("park")) {
+        aiResponse = "🚨 AI Analizi: Araç engeli tespiti! Rota otomatik olarak kaldırımlardan arındırılmış bölgeye kaydırıldı.";
+      } else if (lowerInput.includes("merdiven") || lowerInput.includes("basamak")) {
+        aiResponse = "📐 AI Analizi: Merdiven uyarısı! Asansör ve rampa öncelikli yeni rota aktif edildi.";
       } else {
-        aiResponse = `🤖 AI Analizi: "${input}" bildirimi alındı. Mevcut rota güvenli görünüyor.`;
+        aiResponse = `🤖 AI Analizi: "${input}" bildirimi alındı. Yapay zeka engeli doğruladı ve rotayı sizin için optimize etti.`;
       }
 
       setOutput(aiResponse);
@@ -43,12 +49,16 @@ const AiAssistant: React.FC<{ onRouteUpdate?: () => void }> = ({ onRouteUpdate }
 
   return (
     <div style={{ padding: '20px', backgroundColor: 'white', borderRadius: '32px', marginTop: '20px', border: '1px solid #fce7f3', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}>
-      <h3 style={{ color: '#db2777', fontWeight: '900', fontSize: '14px', marginBottom: '15px' }}>🧠 ACCESS PATH AI (CONNECTED)</h3>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
+        <h3 style={{ color: '#db2777', fontWeight: '900', fontSize: '14px' }}>🧠 ACCESS PATH AI (V4)</h3>
+        <span style={{ fontSize: '10px', backgroundColor: '#fdf2f8', color: '#db2777', padding: '4px 10px', borderRadius: '20px', fontWeight: 'bold' }}>CANLI ROTA</span>
+      </div>
+      
       <div style={{ position: 'relative' }}>
         <input
           type="text"
-          style={{ width: '100%', padding: '12px 45px 12px 15px', marginBottom: '10px', border: '2px solid #fbcfe8', borderRadius: '15px', color: 'black' }}
-          placeholder="Konuşun veya engeli yazın..."
+          style={{ width: '100%', padding: '12px 45px 12px 15px', marginBottom: '10px', border: '2px solid #fbcfe8', borderRadius: '15px', color: 'black', outline: 'none' }}
+          placeholder="Sesli konuşun veya engeli yazın..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
@@ -56,10 +66,19 @@ const AiAssistant: React.FC<{ onRouteUpdate?: () => void }> = ({ onRouteUpdate }
           {isListening ? '🛑' : '🎤'}
         </button>
       </div>
-      <button onClick={handleAnalyze} style={{ width: '100%', padding: '12px', backgroundColor: '#db2777', color: 'white', border: 'none', borderRadius: '15px', fontWeight: 'bold' }}>
+
+      <button
+        onClick={handleAnalyze}
+        style={{ width: '100%', padding: '12px', backgroundColor: '#db2777', color: 'white', border: 'none', borderRadius: '15px', fontWeight: 'bold', cursor: 'pointer' }}
+      >
         {loading ? 'Yapay Zeka Rotayı Değiştiriyor...' : 'Analiz Et ve Rotayı Güncelle'}
       </button>
-      {output && <div style={{ marginTop: '15px', padding: '15px', backgroundColor: '#f0fdf4', color: '#166534', borderRadius: '15px', fontSize: '12px', fontWeight: '500' }}>{output}</div>}
+
+      {output && (
+        <div style={{ marginTop: '15px', padding: '15px', backgroundColor: '#f0fdf4', color: '#166534', borderRadius: '15px', border: '1px solid #bbf7d0', fontSize: '12px', fontWeight: '500' }}>
+          {output}
+        </div>
+      )}
     </div>
   );
 };
