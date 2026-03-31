@@ -62,6 +62,16 @@ export default function App() {
     alert("Canlı yol durumu ve kaza verileri rotaya işlendi!");
   };
 
+  // 🪄 AI ASİSTANI İÇİN ROTA GÜNCELLEME KÖPRÜSÜ
+  const handleAiRouteUpdate = () => {
+    setActiveRoute([
+      userPos,
+      [41.0270, 28.8910], // AI'nın belirlediği yeni güvenli ara durak
+      [41.0300, 28.8960],
+      [41.0350, 28.9100]
+    ]);
+  };
+
   const handleSOS = () => {
     setIsSOSActive(true); setCountdown(5);
     const t = setInterval(() => {
@@ -198,8 +208,8 @@ export default function App() {
                 </MapContainer>
               </div>
 
-              {/* 🧠 İŞTE AI ASİSTANI BURAYA GELDİ! */}
-              <AiAssistant />
+              {/* 🧠 BAĞLANTISI KURULMUŞ AI ASİSTANI */}
+              <AiAssistant onRouteUpdate={handleAiRouteUpdate} />
 
             </div>
           )}
