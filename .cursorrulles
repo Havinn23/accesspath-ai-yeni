@@ -1,0 +1,9 @@
+Proje Adı: AccessPath AI
+Teknoloji Yığını: React (Vite ile), Tailwind CSS, Firebase, Leaflet.js (react-leaflet), Google Gemini API.
+
+Cursor AI için Kesin Kurallar:
+1. Kodları her zaman Functional Components ve React Hooks kullanarak yaz. Sınıf (Class) tabanlı bileşenler kullanma.
+2. Stil işlemleri için sadece Tailwind CSS sınıflarını (class) kullan. Gerekmedikçe harici CSS dosyası oluşturma.
+3. Harita entegrasyonu için sadece "Leaflet" ve "react-leaflet" kütüphanelerini kullan. Kesinlikle Google Maps API kodları veya harici ücretli harita önerme.
+4. Kodlar temiz, parçalara ayrılmış (modüler) ve yeni başlayan birinin okuyup anlayabileceği sadelikte olsun. Karmaşık mimarilerden kaçın.
+5. Yazdığın kodlara her zaman ne işe yaradığını anlatan kısa, Türkçe yorum satırları ekle.
