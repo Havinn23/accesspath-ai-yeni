@@ -1,36 +1,32 @@
-🗺️ AccessPath AI: Kullanıcı Akışı (User Flow)
-1. Giriş ve Profil Tanımlama
+# 🗺️ ACCESS PATH AI: KULLANICI AKIŞI (USER FLOW)
 
-Kullanıcı uygulamayı açar.
+## 📋 1. Adım: Giriş ve Profil Tanımlama
+* **Uygulama Açılışı:** Kullanıcı uygulamayı başlatır.
+* **Kişiselleştirme:** (Simüle Edilmiş) **3D Araç Tarama** özelliği ile tekerlekli sandalye veya bebek arabası genişliğini sisteme tanıtır.
+* **Arayüz Optimizasyonu:** Sistem, kullanıcı tipine göre (görme engelli, bedensel engelli vb.) sesli rehberliği aktif eder.
 
-(Opsiyonel) 3D Araç Tarama özelliğini kullanarak tekerlekli sandalye veya bebek arabası genişliğini sisteme kaydeder.
+---
 
-Sistem, kullanıcı tipine göre (görme engelli, bedensel engelli vb.) arayüzü optimize eder.
+## 📍 2. Adım: Hedef ve Rota Belirleme
+* **Hedef Girişi:** Kullanıcı gitmek istediği yeri yazar veya **🎤 Sesli Komut** ile söyler.
+* **AI Rota Hesaplama:** Yapay zeka; rampalar, asansörler ve anlık kaza/yol çalışması verilerini birleştirerek en engelsiz rotayı çizer.
 
-2. Rota Belirleme
+---
 
-Kullanıcı hedef noktayı yazar veya sesli komutla söyler.
+## 🎤 3. Adım: Anlık Engel Bildirimi (İnteraktif Süreç)
+* **Engel Tespiti:** Kullanıcı yolda hatalı park, merdiven veya inşaat gibi bir engelle karşılaşır.
+* **Bildirim:** Mikrofon butonuna basarak durumu bildirir: *"Burada bir araç kaldırımı kapatmış, geçemiyorum."*
+* **İşleme:** AI, bu sesi harfiyen metne dönüştürür ve analiz aşamasına geçer.
 
-AI, veritabanındaki sabit rampa ve asansör bilgilerini kaza/yol çalışması verileriyle birleştirerek başlangıç rotasını çizer.
+---
 
-3. Anlık Engel Raporlama (Interaktif Katılım)
+## 🧠 4. Adım: Yapay Zeka Analizi ve Dinamik Güncelleme
+* **Karar Mekanizması:** AI, bildirilen engelin tipini (Araba, Merdiven vb.) anlar.
+* **Dinamik Rota:** Haritadaki pembe rota çizgisi, engelden kaçacak şekilde **canlı olarak** yeniden hesaplanır.
+* **🔊 Sesli Rehber (TTS):** Yapay zeka yeni rotayı kullanıcıya sesli okur: *"Engel onaylandı. 20 metre gerideki güvenli rampaya yönlendiriliyorsunuz."*
 
-Kullanıcı yolda bir engelle (hatalı park, merdiven, bozuk zemin) karşılaşır.
+---
 
-Mikrofon butonuna basarak engeli sesli olarak bildirir: "Burada bir araç kaldırımı kapatmış."
-
-AI, bu sesi metne dönüştürür ve analiz eder.
-
-4. Yapay Zeka Analizi ve Dinamik Rota
-
-AI, bildirilen engelin ciddiyetini puanlar.
-
-Rota Güncelleme: Haritadaki mevcut rota, engelin etrafından dolanacak şekilde saniyeler içinde yeniden çizilir.
-
-Sesli Rehber: AI, yeni rotayı kullanıcıya sesli olarak okur: "Engel tespit edildi, 20 metre gerideki güvenli rampaya yönlendiriliyorsunuz."
-
-5. Topluluk Onayı ve Tamamlama
-
-Kullanıcı güvenli şekilde hedefe varır.
-
-Bildirilen engel, diğer kullanıcıların haritasında da "Aktif Uyarı" olarak görünür.
+## ✅ 5. Adım: Varış ve Topluluk Katkısı
+* **Güvenli Varış:** Kullanıcı engellere takılmadan hedefine ulaşır.
+* **Veri Paylaşımı:** Raporlanan engel, diğer tüm kullanıcıların haritasında anlık olarak güncellenir.
