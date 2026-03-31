@@ -11,6 +11,12 @@ AccessPath AI, engelli kullanıcılar için statik bir harita değil, yapay zeka
 **Yayın Linki:** [https://accesspath-ai-yeni.vercel.app/](https://accesspath-ai-yeni.vercel.app/)  
 **Demo Video:** [Buraya videonun linkini ekleyebilirsin - Loom vb.]
 
+## ✨ Temel Özellikler (AI Güncellemesi)
+* 🎤 **Sesli Engel Bildirimi:** Kullanıcılar mikrofon kullanarak anlık engelleri raporlayabilir (Speech-to-Text).
+* 🗺️ **Dinamik Rota Optimizasyonu:** Yapay zeka, bildirilen engele göre haritadaki rotayı canlı olarak yeniden hesaplar.
+* 🔊 **Sesli Asistan Rehberliği:** AI analiz sonuçlarını ve yeni rota bilgilerini kullanıcıya sesli olarak okur (Erişilebilirlik odaklı).
+* 🤖 **Akıllı Senaryo Analizi:** "Araba", "Merdiven", "İnşaat" gibi farklı engel tiplerine özel çözümler üretir.
+
 ## 🛠️ Kullanılan Teknolojiler
 - **Framework:** React.js + Vite
 - **Tasarım:** Tailwind CSS
