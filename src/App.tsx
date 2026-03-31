@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap, Polyline } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import AiAssistant from './features/AiAssistant';
 
 // --- İkonlar ---
 const orangeIcon = new L.Icon({
@@ -165,34 +166,41 @@ export default function App() {
       <main className="max-w-7xl mx-auto p-4 space-y-6">
         <div className={`grid grid-cols-1 ${viewMode === 'both' ? 'lg:grid-cols-2' : ''} gap-6`}>
           
-          {/* HARİTA (KAZA VE YOL DURUMU DAHİL) */}
+          {/* HARİTA VE AI ASİSTAN KISMI */}
           {(viewMode === 'map' || viewMode === 'both') && (
-            <div className="bg-white rounded-[40px] shadow-2xl border-[12px] border-white h-[500px] relative overflow-hidden">
-              <MapContainer center={userPos} zoom={17} style={{ height: '100%' }}>
-                <TileLayer url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png" />
-                <ChangeView center={userPos} />
-                <Marker position={userPos} icon={userIcon} />
-                {/* Otomatik Bildirimler (Kırmızı İkonlar) */}
-                {autoAlerts.map(a => (
-                  <Marker key={a.id} position={[a.lat, a.lng]} icon={redAlertIcon}>
-                    <Popup><div className="w-40 p-1"><p className="text-[10px] font-black text-red-600 uppercase">🚨 OTOMATİK BİLDİRİM</p><p className="text-[9px] font-bold mb-1">{a.type}</p><p className="text-[8px] italic text-gray-500">{a.info}</p></div></Popup>
-                  </Marker>
-                ))}
-                {/* Kullanıcı Bildirimleri (Turuncu İkonlar) */}
-                {obstacles.map(o => (
-                  <Marker key={o.id} position={[o.lat, o.lng]} icon={orangeIcon}>
-                    <Popup>
-                      <div className="w-44 p-1 text-center">
-                         {o.img && <img src={o.img} className="w-full h-24 object-cover rounded-xl mb-2 shadow-sm border border-gray-100" />}
-                         <p className="text-[10px] font-black text-pink-600 mb-1 tracking-tighter uppercase">Rapor: {o.user} ({o.time})</p>
-                         <p className="text-[9px] mb-3 leading-tight italic text-gray-500">"{o.address}"</p>
-                         <button onClick={() => setChatUser(o.user)} className="w-full bg-blue-50 text-blue-600 text-[8px] font-black py-2 rounded-lg border border-blue-100 uppercase italic">Hala orada mı? Sor</button>
-                      </div>
-                    </Popup>
-                  </Marker>
-                ))}
-                {activeRoute && <Polyline positions={activeRoute} color="#ec4899" weight={5} opacity={0.6} dashArray="10, 10" />}
-              </MapContainer>
+            <div className="flex flex-col gap-6">
+              
+              <div className="bg-white rounded-[40px] shadow-2xl border-[12px] border-white h-[500px] relative overflow-hidden">
+                <MapContainer center={userPos} zoom={17} style={{ height: '100%' }}>
+                  <TileLayer url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png" />
+                  <ChangeView center={userPos} />
+                  <Marker position={userPos} icon={userIcon} />
+                  {/* Otomatik Bildirimler */}
+                  {autoAlerts.map(a => (
+                    <Marker key={a.id} position={[a.lat, a.lng]} icon={redAlertIcon}>
+                      <Popup><div className="w-40 p-1"><p className="text-[10px] font-black text-red-600 uppercase">🚨 OTOMATİK BİLDİRİM</p><p className="text-[9px] font-bold mb-1">{a.type}</p><p className="text-[8px] italic text-gray-500">{a.info}</p></div></Popup>
+                    </Marker>
+                  ))}
+                  {/* Kullanıcı Bildirimleri */}
+                  {obstacles.map(o => (
+                    <Marker key={o.id} position={[o.lat, o.lng]} icon={orangeIcon}>
+                      <Popup>
+                        <div className="w-44 p-1 text-center">
+                           {o.img && <img src={o.img} className="w-full h-24 object-cover rounded-xl mb-2 shadow-sm border border-gray-100" />}
+                           <p className="text-[10px] font-black text-pink-600 mb-1 tracking-tighter uppercase">Rapor: {o.user} ({o.time})</p>
+                           <p className="text-[9px] mb-3 leading-tight italic text-gray-500">"{o.address}"</p>
+                           <button onClick={() => setChatUser(o.user)} className="w-full bg-blue-50 text-blue-600 text-[8px] font-black py-2 rounded-lg border border-blue-100 uppercase italic">Hala orada mı? Sor</button>
+                        </div>
+                      </Popup>
+                    </Marker>
+                  ))}
+                  {activeRoute && <Polyline positions={activeRoute} color="#ec4899" weight={5} opacity={0.6} dashArray="10, 10" />}
+                </MapContainer>
+              </div>
+
+              {/* 🧠 İŞTE AI ASİSTANI BURAYA GELDİ! */}
+              <AiAssistant />
+
             </div>
           )}
 
