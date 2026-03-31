@@ -9,7 +9,7 @@ AccessPath AI, engelli kullanıcılar için statik bir harita değil, yapay zeka
 
 ## 🚀 Canlı Demo
 **Yayın Linki:** [https://accesspath-ai-yeni.vercel.app/](https://accesspath-ai-yeni.vercel.app/)  
-**Demo Video:** [Buraya videonun linkini ekleyebilirsin - Loom vb.]
+**Demo Video:** https://www.loom.com/share/6ea68e9dc2d74d19bcdbcd5df8ce8c79 
 
 ## ✨ Temel Özellikler (AI Güncellemesi)
 * 🎤 **Sesli Engel Bildirimi:** Kullanıcılar mikrofon kullanarak anlık engelleri raporlayabilir (Speech-to-Text).
